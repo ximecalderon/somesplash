@@ -18,7 +18,7 @@
 
       <div class="select">
         <%=f.label :category_id, class: "content-xs overline"%>
-        <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category }, class: "select__input" %>
+        <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category.id }, class: "select__input" %>
       </div>
   
       <div>

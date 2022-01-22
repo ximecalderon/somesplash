@@ -18,11 +18,11 @@ class PhotosController < ApplicationController
  #Guiarse desde aqui
   def create
     @photos = Photo.new(photo_params)
-    p @photos
+
     if @photos.save
       redirect_to category_path(@photos.category)
     else
-      render "new", status: :unprocessable_entity
+      render "/new", status: :unprocessable_entity
     end
   end
 
