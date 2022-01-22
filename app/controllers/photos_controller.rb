@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
     if @photos.save
       redirect_to category_path(@photos.category)
     else
-      render "/new", status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 
