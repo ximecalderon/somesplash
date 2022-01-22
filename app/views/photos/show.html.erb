@@ -1,2 +1,14 @@
 <h1>Photos#show</h1>
 <p>Find me in app/views/photos/show.html.erb</p>
+
+
+<p><%=@photo.name%></p>
+<p><%=@photo.description%></p>
+<%=image_tag @photo.image%>
+<%= form_with [@photo, @comment] do |form| %>
+  <%=f.text_area :description, class: "input__content"%>
+  <%=f.submit%>
+<%end%>
+<%@comments.each do |comment|%>
+  <p><%=comment.body%></p>
+<%end%>

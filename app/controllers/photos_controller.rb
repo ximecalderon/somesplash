@@ -1,6 +1,9 @@
 class PhotosController < ApplicationController
   # Alonso
+  # GET /photos/:id
   def show
+    @photo = Photo.find(params[:id])
+    @comments = @photo.comments
   end
 
   # E
