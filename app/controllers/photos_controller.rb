@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
     @photos = Photo.new
     @category = Category.find(params[:category_id])
   end
-
+ #Guiarse desde aqui
   def create
     @photos = Photo.new(photo_params)
     p @photos
