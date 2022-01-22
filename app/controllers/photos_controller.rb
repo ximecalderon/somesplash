@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 
   # E
   def new
-    @photos = Photo.new
+    @photos = Photo.new(category_id: params[:category_id])
     @category = Category.find(params[:category_id])
   end
  #Guiarse desde aqui

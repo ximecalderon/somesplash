@@ -17,19 +17,17 @@
       </div>
     </div>
 
-    <div class="select">
-      <%=f.label :category_id, class: "content-xs overline"%>
-      <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category }, class: "select__input" %>
-    </div>
-
-    <div>
-      <%=f.label :image, class: "content-xs overline"%>
+      <div class="select">
+        <%=f.label :category_id, class: "content-xs overline"%>
+        <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @photos.category_id }, class: "select__input" %>
+      </div>
+  
       <div>
         <%=f.file_field :image, accept: "image/png, image/jpeg"%>
       </div>
       <%=show_errors(@photos, :image)%>
     </div>
 
-    <%=f.submit class: "button button-primary"%>
-  <%end%>
-</section>
+      <%=f.submit class: "button button--secondary"%>
+    <%end%>
+  <%= link_to "Back", category_path(@photos.category) %>
