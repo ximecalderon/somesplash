@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :photos, except: :destroy
-  resources :categories, except: :destroy
+  resources :photos
+  resources :categories do 
+    resources :comments
+  end
+  resources :comments do
+    resources :comments
+  end
   # get "/search", to "photos#search"
 end

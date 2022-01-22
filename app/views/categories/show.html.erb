@@ -14,10 +14,26 @@
                     <div>
                         <%=link_to "Edit", edit_photo_path(photo)%>
                         <%=link_to "Destroy", photo_path(photo), data: { turbo_method: :delete, 
-                                                                                turbo_confirm: "Seguro?" }%>
+                                                                         turbo_confirm: "Seguro?" }%>
                     </div>
                 </div>
             <%end%>
         </div>
+    </div>
+    <div>   
+    <%=form_with model: [@category, @comment], method: :post do |f|%>
+        <%=f.text_area :body%>
+        <%=f.submit%>
+    <%end%>
+    </div>
+    <div>
+        <h2>Comments</h2>
+        <%@comments.each do |comment|%>
+            <hr>
+            <p><%=comment.body%></p>
+            <span>Sent <%=time_ago_in_words(comment.created_at)%> ago</span> 
+            <%=link_to "Destroy", comment_path(comment), data: { turbo_method: :delete, 
+                                                                 turbo_confirm: "Seguro?" }%>
+        <%end%>
     </div>
 </section>

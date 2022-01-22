@@ -4,6 +4,6 @@ class Category < ApplicationRecord
   
   # Associations
   has_one_attached :cover
-  has_many :photo, dependent: :nullify
-  has_many :comment, as: :commentable, dependent: :destroy
+  has_many :photos, dependent: :nullify
+  has_many :comments, as: :commentable, dependent: :destroy
 end
