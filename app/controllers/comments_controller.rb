@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
   def create
     @commentable_object =  params[:category_id] ? Category.find_by_id(params[:category_id]) : Photo.find_by_id(params[:photo_id])
     @comment = @commentable_object.comments.create(comment_params)
+
+    @photo = @commentable_object
+    @comments = @photo.comments
     
     if @comment.save
       redirect_to category_path(@commentable_object) if @commentable_object.instance_of? Category
@@ -11,7 +14,7 @@ class CommentsController < ApplicationController
     else
       redirect_to category_path(@commentable_object) if @commentable_object.instance_of? Category
       #redirect_to photo_path(@commentable_object) if @commentable_object.instance_of? Photo
-      redirect_to photo_path(@commentable_object), id: params[:photo_id] if @commentable_object.instance_of? Photo
+      render "photos/show", status: :unprocessable_entity if @commentable_object.instance_of? Photo
     end
   end
 

@@ -7,8 +7,6 @@
 <%=image_tag @photo.image%>
 <%= form_with model: [@photo, @comment], method: :post do |f| %>
   <%=f.text_area :body%>
-  <%=p @photo%>
-  <%=p @comment%>
   <%=show_errors(@comment, :body)%>
   <%=f.submit%>
 <%end%>

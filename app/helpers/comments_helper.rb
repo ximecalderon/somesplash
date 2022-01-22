@@ -5,7 +5,7 @@ module CommentsHelper
     end
 
     p "==============================="
-    p record.errors
+    p errors
     p "==============================="
 
     safe_join(errors)
