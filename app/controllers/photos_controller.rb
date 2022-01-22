@@ -9,9 +9,17 @@ class PhotosController < ApplicationController
 
   # E
   def new
+    @photos = Photo.new
   end
 
   def create
+    @photos = Photo.new(photo_params)
+    p @photos
+    if @photos.save
+      redirect_to category_path #category_path(@photos.category)
+    else
+      render "new", status: :unprocessable_entity
+    end
   end
 
   # F
@@ -36,5 +44,10 @@ class PhotosController < ApplicationController
     query = params[:query].downcase
     @photos = Photo.where("LOWER(name) LIKE ?", "%#{query}%")
     # render search_results
+  end
+
+  private
+  def photo_params
+    params.require(:photo).permit(:name, :description, :category_id, :image)
   end
 end

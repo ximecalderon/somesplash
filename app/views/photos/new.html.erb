@@ -1,2 +1,33 @@
 <h1>Photos#new</h1>
-<p>Find me in app/views/photos/new.html.erb</p>
+
+   <%=form_with model: @photos, class: "flex flex-column gap-4 mb-4" do |f|%>
+      <div class="input">
+        <%=f.label :title, class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_field :name, class: "input__content"%>
+        </div>
+       
+      </div>
+
+      <div class="input">
+        <%=f.label :description, class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_area :description, class: "input__content"%>
+        </div>
+      </div>
+
+<div class="select">
+    <%=f.label :category_id, class: "content-xs overline"%>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category }, class: "select__input" %>
+  </div>
+  
+      <div>
+        <%=f.label :image, class: "content-xs overline"%>
+        <div>
+          <%=f.file_field :image, accept: "image/png, image/jpeg"%>
+        </div>
+      </div>
+
+      <%=f.submit class: "button button--secondary"%>
+    <%end%>
+
