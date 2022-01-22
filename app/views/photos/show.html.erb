@@ -5,8 +5,8 @@
 <p><%=@photo.name%></p>
 <p><%=@photo.description%></p>
 <%=image_tag @photo.image%>
-<%= form_with [@photo, @comment] do |form| %>
-  <%=f.text_area :description, class: "input__content"%>
+<%= form_with model: [@photo, @comment], method: :post do |f| %>
+  <%=f.text_area :description%>
   <%=f.submit%>
 <%end%>
 <%@comments.each do |comment|%>
