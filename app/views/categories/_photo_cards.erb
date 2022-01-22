@@ -1,0 +1,16 @@
+<div>
+    <%@photos.each do |photo|%>
+        <div>
+            <%=image_tag photo.image%>
+            <div>
+                <%=link_to photo.name, photo_path(photo)%>
+                <span ><%=photo.comments_count%> comments</span>
+            </div>
+            <div>
+                <%=link_to "Edit", edit_photo_path(photo)%>
+                <%=link_to "Destroy", photo_path(photo), data: { turbo_method: :delete, 
+                                                                    turbo_confirm: "Seguro?" }%>
+            </div>
+        </div>
+    <%end%>
+</div>

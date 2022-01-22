@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :comments do
     resources :comments
   end
-  # get "/search", to "photos#search"
+
+  get "/search", to: "photos#search"
+  get "/search_results", to: "photos#search_results"
 end
