@@ -11,6 +11,9 @@ class PhotosController < ApplicationController
   def new
     @photos = Photo.new
     @category = Category.find(params[:category_id])
+    p "*"*50
+     p @category.id
+    p "*"*50
   end
  #Guiarse desde aqui
   def create

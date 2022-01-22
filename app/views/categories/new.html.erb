@@ -22,6 +22,7 @@
         <div>
           <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
         </div>
+        <%=show_errors(@categories, :cover)%>
       </div>
 
       <%=f.submit class: "button button--secondary"%>

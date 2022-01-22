@@ -1,5 +1,5 @@
 <h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+
 
 <%=form_with model: @category, class: "flex flex-column gap-4 mb-4" do |f|%>
       <div class="input">
@@ -23,6 +23,7 @@
         <div>
           <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
         </div>
+         <%=show_errors(@category, :cover)%>
       </div>
 
       <%=f.submit class: "button button--secondary"%>

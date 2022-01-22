@@ -2,11 +2,11 @@
 
    <%=form_with model: @photos, class: "flex flex-column gap-4 mb-4" do |f|%>
       <div class="input">
-        <%=f.label :title, class: "content-xs overline"%>
+        <%=f.label :name, class: "content-xs overline"%>
         <div class="input__container">
           <%=f.text_field :name, class: "input__content"%>
         </div>
-       <%=show_errors(@photos, :title)%>
+       <%=show_errors(@photos, :name)%>
       </div>
 
       <div class="input">
@@ -14,23 +14,19 @@
         <div class="input__container">
           <%=f.text_area :description, class: "input__content"%>
         </div>
-        <%=show_errors(@photos, :description)%>
       </div>
 
-<div class="select">
-<%if @category.id?%>
-    <%=f.label :category_id, class: "content-xs overline"%>
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category.id }, class: "select__input" %>
-    <%=show_errors(@category, :category_id)%>
-    <%end%>
-    
-  </div>
+      <div class="select">
+        <%=f.label :category_id, class: "content-xs overline"%>
+        <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category }, class: "select__input" %>
+      </div>
   
       <div>
         <%=f.label :image, class: "content-xs overline"%>
         <div>
           <%=f.file_field :image, accept: "image/png, image/jpeg"%>
         </div>
+        <%=show_errors(@photos, :image)%>
       </div>
 
       <%=f.submit class: "button button--secondary"%>
