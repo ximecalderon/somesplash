@@ -73,7 +73,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    redirect_to category_path, status: :see_other
+    redirect_to categories_path, status: :see_other
   end
 
   private

@@ -6,7 +6,7 @@
         <div class="input__container">
           <%=f.text_field :name, class: "input__content"%>
         </div>
-       
+       <%=show_errors(@photos, :title)%>
       </div>
 
       <div class="input">
@@ -14,11 +14,16 @@
         <div class="input__container">
           <%=f.text_area :description, class: "input__content"%>
         </div>
+        <%=show_errors(@photos, :description)%>
       </div>
 
 <div class="select">
+<%if @category.id?%>
     <%=f.label :category_id, class: "content-xs overline"%>
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category }, class: "select__input" %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @category.id }, class: "select__input" %>
+    <%=show_errors(@category, :category_id)%>
+    <%end%>
+    
   </div>
   
       <div>
@@ -30,4 +35,3 @@
 
       <%=f.submit class: "button button--secondary"%>
     <%end%>
-

@@ -10,13 +10,14 @@ class PhotosController < ApplicationController
   # E
   def new
     @photos = Photo.new
+    @category = Category.find(params[:category_id])
   end
 
   def create
     @photos = Photo.new(photo_params)
     p @photos
     if @photos.save
-      redirect_to category_path #category_path(@photos.category)
+      redirect_to category_path(@photos.category)
     else
       render "new", status: :unprocessable_entity
     end
