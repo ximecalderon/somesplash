@@ -20,12 +20,10 @@ class CategoriesController < ApplicationController
 
   # Claudia
   def edit
-    #@category = Category.where(id: params[:id])[0]
     @category = Category.find(params[:id])
   end
   
   def update
-    #update_cat = Category.where(id: params[:id])[0]
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
@@ -33,13 +31,6 @@ class CategoriesController < ApplicationController
     else
       render "edit", status: :unprocessable_entity
     end
-    #puts params
-
-    #if(update_cat.update(user_params))
-    #  redirect_to categories_path
-    #else
-    #  render "edit", status: :unprocessable_entity
-    #end
   end
   
   # Ximena
@@ -52,27 +43,6 @@ class CategoriesController < ApplicationController
     
     # render category/show
   end
-
-  # # POST /categories/:id/add_comment
-  # def add_comment
-  #   @category = Category.find(params[:id])
-  #   @comment = @category.comments.new(comment_params)
-
-  #   if @comment.save
-  #     redirect_to category_path(@comment.commentable_type)
-  #   else
-  #     render "new", status: :unprocessable_entity
-  #   end
-  # end
-
-  # # DELETE /categories/:id/remove_comment
-  # def remove_comment
-  #   @category = Category.find(params[:id])
-  #   @comment = Comment.find(params[:id])
-  #   @category.comments.delete(@comment)
-
-  #   redirect_to categories_path, status: :see_other
-  # end
 
   # DELETE /categories/:id
   def destroy

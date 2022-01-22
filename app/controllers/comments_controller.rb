@@ -28,6 +28,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    params[:category_id]? 
+    (redirect_to controller: 'categories', action: 'show') :
+    (redirect_to controller: 'photos', action: 'show')
   end
 
   private

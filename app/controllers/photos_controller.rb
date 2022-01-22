@@ -32,6 +32,10 @@ class PhotosController < ApplicationController
 
   # G
   def destroy
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+
+    redirect_to controller: 'categories', action: 'show'
   end
 
   # GET /search
