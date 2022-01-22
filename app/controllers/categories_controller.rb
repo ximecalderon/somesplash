@@ -12,9 +12,21 @@ class CategoriesController < ApplicationController
 
   # Claudia
   def edit
+    @category = Category.where(id: params[:id])[0]
   end
   
   def update
+    update_cat = Category.where(id: params[:id])[0]
+    puts params
+    if(update_cat.update(user_params))
+      redirect_to categories_path
+    else
+      render "edit", status: :unprocessable_entity
+    end
+  end
+
+  def user_params
+    params.require(:category).permit(:id, :name, :cover, :description)
   end
   
   # Ximena
