@@ -9,21 +9,19 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class="container">
     <header>
-      <div class="container">
-        <%=link_to image_tag("brand/logo.png"), categories_path%>
-        <%=link_to "Search", "/search"%>
-      </div>
+      <%=link_to image_tag("brand/logo.png"), categories_path%>
+      <%=link_to "Search", "/search", class: "button button-secondary"%>
     </header>
     <%= yield %>
     <footer>
-      <p>Build with ♥ by</p>
-      <div>
-        <%=link_to image_tag("icons/github.svg") + "Alonso Zevallos","https://github.com/alonsozf94", target: "_blank"%>
-        <%=link_to image_tag("icons/github.svg") + "Claudia Aybar", "https://github.com/claudiaa7p", target: "_blank"%>
-        <%=link_to image_tag("icons/github.svg") + "Jesús Tuesta", "https://github.com/jesustr20", target: "_blank"%>
-        <%=link_to image_tag("icons/github.svg") + "Ximena Calderón", "https://github.com/ximecalderon", target: "_blank"%>
+      <p>Built with ♥ by</p>
+      <div class="members">
+        <%=link_to image_tag("icons/github.svg") + "Alonso Zevallos","https://github.com/alonsozf94", class: "member", target: "_blank"%>
+        <%=link_to image_tag("icons/github.svg") + "Claudia Aybar", "https://github.com/claudiaa7p", class: "member", target: "_blank"%>
+        <%=link_to image_tag("icons/github.svg") + "Jesús Tuesta", "https://github.com/jesustr20", class: "member", target: "_blank"%>
+        <%=link_to image_tag("icons/github.svg") + "Ximena Calderón", "https://github.com/ximecalderon", class: "member", target: "_blank"%>
       </div>
     </footer>
   </body>

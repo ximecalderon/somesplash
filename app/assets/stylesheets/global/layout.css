@@ -20,3 +20,8 @@
   max-width: 1280px;
   margin: auto;
 }
+
+.spacing {
+  margin-left: 16px;
+  margin-right: 16px;
+}

@@ -3,6 +3,10 @@
   color: #fff;
 }
 
+.black {
+  color: #000
+}
+
 .bg-gray-100 {
   background-color: var(--gray-100);
 }

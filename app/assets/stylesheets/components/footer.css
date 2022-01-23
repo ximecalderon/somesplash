@@ -1,3 +1,21 @@
 footer {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px
+}
+
+footer .members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px
+}
+
+footer .member {
+  color: var(--secondary-500);
+}
+
+footer .member img {
+  margin-right: 6px;
+  display: inline-block;
 }
