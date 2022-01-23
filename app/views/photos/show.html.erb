@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="start">
   <div class="spacing">
     <p class="heading--lg black mb-1"><%=@photo.name%></p>
@@ -29,3 +30,28 @@
     </div>
   </div>
 </section>
+=======
+<h1>Photos#show</h1>
+
+
+
+<p><%=@photo.name%></p>
+<p><%=@photo.description%></p>
+<%=image_tag @photo.image%>
+<%= form_with model: [@photo, @comment], method: :post do |f| %>
+  <%=f.text_area :body%>
+  <%=show_errors(@comment, :body)%>
+  <%=f.submit%>
+<%end%>
+<div>
+  <h2>Comments</h2>
+  <%@comments.each do |comment|%>
+    <hr>
+    <p><%=comment.body%></p>
+    <span>Sent <%=time_ago_in_words(comment.created_at)%> ago</span> 
+    <%=link_to "Destroy", comment_path(comment), data: { turbo_method: :delete, 
+                                                         turbo_confirm: "Seguro?" }%>
+  <%end%>
+</div>
+
+>>>>>>> b20e725 (Merge functionality with styles)

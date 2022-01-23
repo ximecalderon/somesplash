@@ -1,20 +1,29 @@
 class CommentsController < ApplicationController
-  # POST /categories/:category_id/comments
-  # POST /photos/:photo_id/comments
   def create
-    @commentable_object =  params[:category_id] ? Category.find_by_id(params[:category_id]) : Photo.find_by_id(params[:photo_id])
-    @comment = @commentable_object.comments.create(comment_params)
+   if params[:category_id]
+      # POST /categories/:category_id/comments
+      @commentable_object = Category.find_by_id(params[:category_id])
+      @category = @commentable_object
+      @photos = @category.photos
+      commentable_uri = "categories"
+      path = category_path(@commentable_object)
+   elsif params[:photo_id]
+      # POST /photos/:photo_id/comments
+      @commentable_object = Photo.find_by_id(params[:photo_id])
+      @photo = @commentable_object
+      commentable_uri = "photos"
+      path = photo_path(@commentable_object)
+   end
 
-    @photo = @commentable_object
-    @comments = @photo.comments
-    
+    @comment = @commentable_object.comments.create(comment_params)
+    @comments = params[:category_id]?
+                Category.find_by_id(params[:category_id]).comments :
+                Photo.find_by_id(params[:photo_id]).comments
+
     if @comment.save
-      redirect_to category_path(@commentable_object) if @commentable_object.instance_of? Category
-      redirect_to photo_path(@commentable_object) if @commentable_object.instance_of? Photo
+      redirect_to path
     else
-      redirect_to category_path(@commentable_object) if @commentable_object.instance_of? Category
-      #redirect_to photo_path(@commentable_object) if @commentable_object.instance_of? Photo
-      render "photos/show", status: :unprocessable_entity if @commentable_object.instance_of? Photo
+      render "#{commentable_uri}/show", status: :unprocessable_entity
     end
   end
 
