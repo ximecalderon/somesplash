@@ -25,6 +25,7 @@ puts "Succesfully cleaned database."
 
 puts "Seeding DB..."
 
+# Categories
 wallpapers = seed_category("Wallpapers", 
                            "From epic drone shots to inspiring moments in nature, find free HD wallpapers worthy of your screens.", 
                            "wallpapers.png")
@@ -37,24 +38,69 @@ people = seed_category("People",
                        "Real people, captured. Photography has the power to reflect the world around us, give voice to individuals and groups.", 
                        "people.png")
 
-purple_lake = seed_photo(nature,
-                         "Purple Lake",
-                         "Nice and big purple lake.",
-                         "purple_lake.png")
+# Photos
 
-green_plant = seed_photo(nature,
-                         "Green Plant",
-                         "Nice and little green plant.",
-                         "green_plant.png")
+wallpaper_photos = []
+nature_photos = []
+people_photos = []
 
-lonely_bird = seed_photo(nature,
-                         "Lonely Bird",
-                         "Nice and lonely flying bird.",
-                         "lonely_bird.png")
+w_range = (1..5).to_a
+3.times do
+  img = w_range.sample
+  new_photo = seed_photo(wallpapers,
+              Faker::Emotion.noun.capitalize,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+  wallpaper_photos.push(new_photo)
+  w_range.delete(img)
+end
 
-nature.comments.create(body: "Lorem ipsum Dolor.")
+n_range = (6..10).to_a
+3.times do
+  img = n_range.sample
+  new_photo = seed_photo(nature,
+              Faker::Emotion.noun.capitalize,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+              nature_photos.push(new_photo)
+  n_range.delete(img)
+end
 
-purple_lake.comments.create(body: "Lorem ipsum Dolor.")
+p_range = (11..15).to_a
+3.times do
+  img = p_range.sample
+  new_photo = seed_photo(people,
+              Faker::FunnyName.name,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+  people_photos.push(new_photo)
+  p_range.delete(img)
+end
+
+# Comments
+[nature, wallpapers, people].each do |category|
+  rand(2..4).times do
+    category.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+wallpaper_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+nature_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+people_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
 
 puts "Succesfully seeded database."
                
