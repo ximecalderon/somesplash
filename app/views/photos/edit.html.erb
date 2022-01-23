@@ -1,2 +1,38 @@
 <h1>Photos#edit</h1>
 <p>Find me in app/views/photos/edit.html.erb</p>
+<%=form_with model: @photo, class: "flex flex-column gap-4 mb-4" do |f|%>
+      <div class="input">
+        <%=f.label :name, "Title", class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_field :name, class: "input__content"%>
+        </div>
+        <%=show_errors(@photo, :name)%>
+      </div>
+
+      <div class="input">
+        <%=f.label :description, class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_area :description, class: "input__content"%>
+        </div>
+        <%=show_errors(@photo, :description)%>
+      </div>
+
+    <div class="input"> 
+        <%=f.label :category_id, class: "content-xs overline"%>
+        <div class="input__container">
+            <%= f.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select a category...") %>
+        </div>
+        <%=show_errors(@photo, :category_id)%>
+      </div>
+
+
+      <div>
+        <%=f.label :cover, class: "content-xs overline"%>
+        <div>
+          <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
+        </div>
+      </div>
+
+      <%=f.submit "Edit Photo", class: "button button--secondary"%>
+    <%end%>
+    <%=link_to "Back", categories_path, class: "button button--subtle"%>  

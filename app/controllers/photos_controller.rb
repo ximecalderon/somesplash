@@ -25,9 +25,21 @@ class PhotosController < ApplicationController
 
   # F
   def edit
+    @photo = Photo.find(params[:id])
+    @categories = Category.all
   end
 
   def update
+    update_photo = Photo.where(id: params[:id])[0]
+    if(update_photo.update(user_params))
+      redirect_to controller: 'categories', action: 'show', id: update_photo[:category_id]
+    else
+      render "edit", status: :unprocessable_entity
+    end
+  end
+
+  def user_params
+    params.require(:photo).permit(:id, :name, :cover, :description)
   end
 
   # G
