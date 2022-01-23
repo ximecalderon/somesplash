@@ -5,11 +5,7 @@ module CommentsHelper
     end
 
     p "==============================="
-<<<<<<< HEAD
-    p errors
-=======
     p record.errors
->>>>>>> 847df26 (Error message)
     p "==============================="
 
     safe_join(errors)
