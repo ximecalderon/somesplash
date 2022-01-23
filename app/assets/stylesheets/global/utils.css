@@ -11,6 +11,10 @@
   color: var(--gray-400)
 }
 
+.gray-300 {
+  color: var(--gray-300)
+}
+
 .bg-gray-100 {
   background-color: var(--gray-100);
 }

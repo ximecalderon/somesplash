@@ -1,15 +1,31 @@
-<h1>Photos#show</h1>
-
-
-
-<p><%=@photo.name%></p>
-<p><%=@photo.description%></p>
-<%=image_tag @photo.image%>
-<%= form_with model: [@photo, @comment], method: :post do |f| %>
-  <%=f.text_area :body%>
-  <%=show_errors(@comment, :body)%>
-  <%=f.submit%>
-<%end%>
-<%@comments.each do |comment|%>
-  <p><%=comment.body%></p>
-<%end%>
+<section class="start">
+  <div class="spacing">
+    <p class="heading--lg black mb-1"><%=@photo.name%></p>
+    <p class="content-xl gray-400 mb-1"><%=@photo.description%></p>
+    <p class="content-lg gray-300 mb-1">Updated at <%=@photo.created_at%></p>
+    <div class="mb-4"><%=image_tag @photo.image%></div>
+    <%= form_with model: [@photo, @comment], method: :post, class: "flex flex-column gap-4 mb-4" do |f| %>
+      <div class="input">
+        <div class="input__container">
+          <%=f.text_area :body, placeholder: "Type your comment...", class: "input__content"%>
+        </div>
+        <%=show_errors(@comment, :body)%>
+      </div>
+      <%=f.submit class: "button button-primary"%>
+    <%end%>
+    <div>
+      <h2 class="heading--md mb-4">Comments</h2>
+      <%@comments.each do |comment|%>
+        <div class="comment-card">
+          <div class="comment-card_line"></div>
+          <p class="comment-card_body"><%=comment.body%></p>
+          <div class="comment-card_options">
+            <span class="comment-card_date">Sent <%=time_ago_in_words(comment.created_at)%> ago</span> 
+            <%=link_to image_tag("icons/delete_icon.svg"), comment_path(comment), data: { turbo_method: :delete, 
+                                                                turbo_confirm: "Seguro?" }, class: "comment-card_option-button"%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</section>
