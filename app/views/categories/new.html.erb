@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="section-sm flex flex-column">
   <h1 class="heading">New category</h1>
   <%=form_with model: @categories, class: "flex flex-column" do |f|%>
@@ -5,14 +6,43 @@
       <%=f.label :name, class: "content-xs overline"%>
       <div class="input__container">
         <%=f.text_field :name, placeholder: "Technology", class: "input__content"%>
+=======
+<h1>New Category</h1>
+
+  <% if @categories.errors.any?%>
+    <p>Something went wrong:</p>
+    <ul>
+      <% @categories.errors.full_messages.each do |categorie|%>
+      <li><%=categorie%></li>
+      <%end%>
+    </ul>
+
+  <%end%>
+
+
+   <%=form_with model: @categories, class: "flex flex-column gap-4 mb-4" do |f|%>
+      <div class="input">
+        <%=f.label :name, class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_field :name, class: "input__content"%>
+        </div>
+>>>>>>> ca189ef (verificar cambios)
       </div>
       <%=show_errors(@categories, :name)%>
     </div>
 
+<<<<<<< HEAD
     <div class="input">
       <%=f.label :description, class: "content-xs overline"%>
       <div class="input__container">
         <%=f.text_area :description, placeholder: "Exploring our complicated relationship with technology...", class: "input__content"%>
+=======
+      <div class="input">
+        <%=f.label :description, class: "content-xs overline"%>
+        <div class="input__container">
+          <%=f.text_area :description, class: "input__content"%>
+        </div>
+>>>>>>> ca189ef (verificar cambios)
       </div>
       <%=show_errors(@categories, :description)%>
     </div>
@@ -20,7 +50,14 @@
     <div>
       <%=f.label :cover, class: "content-xs overline"%>
       <div>
+<<<<<<< HEAD
         <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
+=======
+        <%=f.label :cover, class: "content-xs overline"%>
+        <div>
+          <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
+        </div>
+>>>>>>> ca189ef (verificar cambios)
       </div>
       <%=show_errors(@categories, :cover)%>
     </div>

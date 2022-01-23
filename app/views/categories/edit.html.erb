@@ -1,12 +1,27 @@
+<<<<<<< HEAD
 <section class="section-sm flex flex-column">
   <h1 class="heading">Edit category</h1>
   <%=form_with model: @category, class: "flex flex-column" do |f|%>
+=======
+<h1>Edit Category</h1>
+
+<% if @category.errors.any?%>
+    <p>Something went wrong:</p>
+    <ul>
+      <% @category.errors.full_messages.each do |categorie|%>
+      <li><%=categorie%></li>
+      <%end%>
+    </ul>
+
+  <%end%>
+
+<%=form_with model: @category, class: "flex flex-column gap-4 mb-4" do |f|%>
+>>>>>>> ca189ef (verificar cambios)
       <div class="input">
         <%=f.label :name, class: "content-xs overline"%>
         <div class="input__container">
           <%=f.text_field :name, class: "input__content"%>
         </div>
-        <%=show_errors(@category, :name)%>
       </div>
 
       <div class="input">
@@ -14,7 +29,6 @@
         <div class="input__container">
           <%=f.text_area :description, class: "input__content"%>
         </div>
-        <%=show_errors(@category, :description)%>
       </div>
 
       <div>
@@ -22,7 +36,10 @@
         <div>
           <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
         </div>
+<<<<<<< HEAD
         <%=show_errors(@category, :cover)%>
+=======
+>>>>>>> ca189ef (verificar cambios)
       </div>
 
       <%=f.submit class: "button button-primary"%>

@@ -1,13 +1,20 @@
 <section class="section-sm flex flex-column">
   <h1 class="heading">New photo</h1>
+ <% if @photos.errors.any?%>
+    <p>Something went wrong:</p>
+    <ul>
+      <% @photos.errors.full_messages.each do |photo|%>
+      <li><%=photo%></li>
+      <%end%>
+    </ul>
+  <%end%>
 
-  <%=form_with model: @photos, class: "flex flex-column gap-4 mb-4" do |f|%>
+    <%=form_with model: @photos, class: "flex flex-column gap-4 mb-4" do |f|%>
     <div class="input">
       <%=f.label :name, class: "content-xs overline"%>
       <div class="input__container">
         <%=f.text_field :name, placeholder: "Big mountain", class: "input__content"%>
       </div>
-      <%=show_errors(@photos, :name)%>
     </div>
 
     <div class="input">
@@ -17,15 +24,16 @@
       </div>
     </div>
 
-      <div class="select">
-        <%=f.label :category_id, class: "content-xs overline"%>
-        <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @photos.category_id }, class: "select__input" %>
-      </div>
+    <div class="select">
+      <%=f.label :category_id, class: "content-xs overline"%>
+      <%= f.collection_select :category_id, Category.order(:name), :id, :name, { selected: @photos.category_id }, class: "select__input" %>
+    </div>
   
+    <div>
+      <%=f.label :image, class: "content-xs overline"%>
       <div>
         <%=f.file_field :image, accept: "image/png, image/jpeg"%>
       </div>
-      <%=show_errors(@photos, :image)%>
     </div>
 
       <%=f.submit class: "button button--secondary"%>
