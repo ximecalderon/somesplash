@@ -1,31 +1,32 @@
-<h1>Categories#new</h1>
-
-   <%=form_with model: @categories, class: "flex flex-column gap-4 mb-4" do |f|%>
-      <div class="input">
-        <%=f.label :name, class: "content-xs overline"%>
-        <div class="input__container">
-          <%=f.text_field :name, class: "input__content"%>
-        </div>
-        <%=show_errors(@categories, :name)%>
+<section class="section-sm flex flex-column">
+  <h1 class="heading">New category</h1>
+  <%=form_with model: @categories, class: "flex flex-column" do |f|%>
+    <div class="input">
+      <%=f.label :name, class: "content-xs overline"%>
+      <div class="input__container">
+        <%=f.text_field :name, placeholder: "Technology", class: "input__content"%>
       </div>
+      <%=show_errors(@categories, :name)%>
+    </div>
 
-      <div class="input">
-        <%=f.label :description, class: "content-xs overline"%>
-        <div class="input__container">
-          <%=f.text_area :description, class: "input__content"%>
-        </div>
-        <%=show_errors(@categories, :description)%>
+    <div class="input">
+      <%=f.label :description, class: "content-xs overline"%>
+      <div class="input__container">
+        <%=f.text_area :description, placeholder: "Exploring our complicated relationship with technology...", class: "input__content"%>
       </div>
+      <%=show_errors(@categories, :description)%>
+    </div>
 
+    <div>
+      <%=f.label :cover, class: "content-xs overline"%>
       <div>
-        <%=f.label :cover, class: "content-xs overline"%>
-        <div>
-          <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
-        </div>
-        <%=show_errors(@categories, :cover)%>
+        <%=f.file_field :cover, accept: "image/png, image/jpeg"%>
       </div>
+      <%=show_errors(@categories, :cover)%>
+    </div>
 
-      <%=f.submit class: "button button--secondary"%>
-    <%end%>
+    <%=f.submit class: "button button-primary"%>
+  <%end%>
 
-    <%=link_to "Back", categories_path, class: "button button--subtle"%>
+  <%=link_to "Back", categories_path, class: "button button-secondary center-text"%>
+</section>

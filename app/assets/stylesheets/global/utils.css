@@ -4,7 +4,7 @@
 }
 
 .black {
-  color: #000
+  color: #000;
 }
 
 .gray-400 {
@@ -35,6 +35,7 @@
 /* Flex & Grid */
 .flex {
   display: flex;
+  gap: 16px;
 }
 
 .flex-column {
