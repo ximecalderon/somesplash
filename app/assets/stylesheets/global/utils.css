@@ -7,6 +7,10 @@
   color: #000
 }
 
+.gray-400 {
+  color: var(--gray-400)
+}
+
 .bg-gray-100 {
   background-color: var(--gray-100);
 }

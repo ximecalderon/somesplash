@@ -1,7 +1,7 @@
-<section>
+<section class="start">
     <div class="spacing">
-      <h1 class="heading--lg black">Categories</h1>
-      <%=link_to "New Category", new_category_path, class: "button button-primary"%>
+      <h1 class="heading--lg black mb-4">Categories</h1>
+      <%=link_to "New Category", new_category_path, class: "button button-primary mb-4"%>
       <div>
         <%@categories.each do |category|%>
             <div class="category-card">
@@ -14,7 +14,7 @@
                 <div class="category-card_description">
                   <%=category.description%>
                 </div>
-                <div class="category-card_options">
+                <div class="options">
                   <div class="option-button">
                     <%=link_to image_tag("icons/edit_icon.svg"), edit_category_path(category), class: "option-button_link edit"%>
                   </div>
