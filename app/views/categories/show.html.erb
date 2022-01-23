@@ -1,2 +1,35 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<section class="start">
+  <div class="spacing">
+    <div>
+      <h1 class="heading--lg black mb-4"><%=@category.name%></h1>
+      <p class="content-lg gray-400 mb-4"><%=@category.description%></p>
+      <%=link_to "New photo", new_photo_path(category_id: @category.id), class: "button button-primary mb-4"%>
+      <%=render "photo_cards"%>
+    </div>
+    <div> 
+    <%= form_with model: [@category, @comment], method: :post, class: "flex flex-column gap-4 mb-4" do |f| %>
+      <div class="input">
+        <div class="input__container">
+          <%=f.text_area :body, placeholder: "Type your comment...", class: "input__content"%>
+        </div>
+        <%=show_errors(@comment, :body)%>
+      </div>
+      <%=f.submit class: "button button-primary"%>
+    <%end%>
+    </div>
+    <div>
+      <h2 class="heading--md mb-4">Comments</h2>
+      <%@comments.each do |comment|%>
+        <div class="comment-card">
+          <div class="comment-card_line"></div>
+          <p class="comment-card_body"><%=comment.body%></p>
+          <div class="comment-card_options">
+            <span class="comment-card_date">Sent <%=time_ago_in_words(comment.created_at)%> ago</span> 
+            <%=link_to image_tag("icons/delete_icon.svg"), comment_path(comment), data: { turbo_method: :delete, 
+                                                                turbo_confirm: "Seguro?" }, class: "comment-card_option-button"%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</section>

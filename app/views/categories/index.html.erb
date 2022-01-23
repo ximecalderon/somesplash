@@ -1,23 +1,32 @@
-<section>
-    <div>
-        <h1>Categories</h1>
-        <div>
-            <%@categories.each do |category|%>
-                <div>
-                    <%if category.cover.attached?%>
-                        <%=image_tag category.cover%>
-                    <%end%>
-                    <div>
-                        <%=link_to category.name, category_path(category)%>
-                        <span ><%=category.photos_count%> photos</span>
-                    </div>
-                    <div>
-                        <%=link_to "Edit", edit_category_path(category)%>
-                        <%=link_to "Destroy", category_path(category), data: { turbo_method: :delete, 
-                                                                                turbo_confirm: "Seguro?" }%>
-                    </div>
+<section class="start">
+    <div class="spacing">
+      <h1 class="heading--lg black mb-4">Categories</h1>
+      <%=link_to "New Category", new_category_path, class: "button button-primary mb-4"%>
+      <div>
+        <%@categories.each do |category|%>
+            <div class="category-card">
+              <%if category.cover.attached?%>
+                <%=image_tag category.cover, class: "category-card_cover"%>
+              <%end%>
+              <div class="category-card_content">
+                <%=link_to category.name, category_path(category), class: "category-card_name heading--md"%>
+                <span class="category-card_photos"><%=category.photos_count%> photos</span>
+                <div class="category-card_description">
+                  <%=category.description%>
                 </div>
-            <%end%>
-        </div>
+                <div class="options">
+                  <div class="option-button">
+                    <%=link_to image_tag("icons/edit_icon.svg"), edit_category_path(category), class: "option-button_link edit"%>
+                  </div>
+                  <div class="option-button">
+                    <%=link_to image_tag("icons/delete_icon.svg"), category_path(category), data: { turbo_method: :delete, 
+                                                                                        turbo_confirm: "Seguro?" }, class: "option-button_link delete"%>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+        <%end%>
+      </div>
     </div>
 </section>

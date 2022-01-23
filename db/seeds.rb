@@ -1,36 +1,106 @@
-puts "Destroying previous data"
+# Auxiliar Methods
+def seed_category(name, description, cover_file)
+  new_category = Category.new(name:name, description:description)
+  new_category.cover.attach(io: File.open("app/assets/images/categories/#{cover_file}"), filename: cover_file)
+  new_category.save
+  new_category
+end
+
+def seed_photo(category, name, description, image_file)
+  new_photo = category.photos.new(name:name, description:description)
+  new_photo.image.attach(io: File.open("app/assets/images/photos/#{image_file}"), filename: image_file)
+  new_photo.save
+  new_photo
+end
+
+# Seeding process
+
+puts "Destroying previous data..."
 
 Comment.destroy_all
 Photo.destroy_all
 Category.destroy_all
 
-puts "Seeding DB"
+puts "Succesfully cleaned database."
 
-wallpapers = Category.create(name: "Wallpapers", 
-             description: "From epic drone shots to inspiring moments in nature, find free HD wallpapers worthy of your screens.")
-             wallpapers.cover.attach(io: File.open("app/assets/images/categories/wallpapers.png"), filename: "wall_cover")
+puts "Seeding DB..."
 
-nature = Category.create(name: "Nature", 
-             description: "Let’s celebrate the magic of Mother Earth — with images of everything our planet has to offer.")
-             nature.cover.attach(io: File.open("app/assets/images/categories/nature.png"), filename: "nature_cover")
+# Categories
+wallpapers = seed_category("Wallpapers", 
+                           "From epic drone shots to inspiring moments in nature, find free HD wallpapers worthy of your screens.", 
+                           "wallpapers.png")
 
-people = Category.create(name: "People", 
-             description: "Real people, captured. Photography has the power to reflect the world around us, give voice to individuals and groups.")
-             people.cover.attach(io: File.open("app/assets/images/categories/people.png"), filename: "people_cover")
+nature = seed_category("Nature", 
+                       "Let’s celebrate the magic of Mother Earth — with images of everything our planet has to offer.", 
+                       "nature.png")
 
-purple_lake = nature.photo.create(name: "Purple Lake", 
-              description: "Nice and big purple lake.")
-              purple_lake.image.attach(io: File.open("app/assets/images/photos/purple_lake.png"), filename: "purple_lake")
+people = seed_category("People", 
+                       "Real people, captured. Photography has the power to reflect the world around us, give voice to individuals and groups.", 
+                       "people.png")
 
-green_plant = nature.photo.create(name: "Green Plant", 
-              description: "Nice and little green plant.")
-              green_plant.image.attach(io: File.open("app/assets/images/photos/green_plant.png"), filename: "green_plant")
+# Photos
 
-lonely_bird = nature.photo.create(name: "Lonely Bird", 
-              description: "Nice and lonely flying bird.")
-              lonely_bird.image.attach(io: File.open("app/assets/images/photos/lonely_bird.png"), filename: "lonely_bird")
+wallpaper_photos = []
+nature_photos = []
+people_photos = []
 
-purple_lake.comment.create(body: "Lorem ipsum Dolor.")
+w_range = (1..5).to_a
+3.times do
+  img = w_range.sample
+  new_photo = seed_photo(wallpapers,
+              Faker::Emotion.noun.capitalize,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+  wallpaper_photos.push(new_photo)
+  w_range.delete(img)
+end
 
-nature.comment.create(body: "Lorem ipsum Dolor.")
-                
+n_range = (6..10).to_a
+3.times do
+  img = n_range.sample
+  new_photo = seed_photo(nature,
+              Faker::Emotion.noun.capitalize,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+              nature_photos.push(new_photo)
+  n_range.delete(img)
+end
+
+p_range = (11..15).to_a
+3.times do
+  img = p_range.sample
+  new_photo = seed_photo(people,
+              Faker::FunnyName.name,
+              Faker::GreekPhilosophers.quote,
+              "#{img}.png")
+  people_photos.push(new_photo)
+  p_range.delete(img)
+end
+
+# Comments
+[nature, wallpapers, people].each do |category|
+  rand(2..4).times do
+    category.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+wallpaper_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+nature_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+people_photos.each do |photo|
+  rand(2..6).times do
+    photo.comments.create(body: Faker::Quote.famous_last_words)
+  end
+end
+
+puts "Succesfully seeded database."
+               

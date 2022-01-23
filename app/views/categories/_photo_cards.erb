@@ -1,0 +1,21 @@
+<div>
+  <%@photos.each do |photo|%>
+    <div class="photo-card">
+      <%=image_tag photo.image, class: "photo-card_cover"%>
+      <div  class="photo-card_content bg-gray-100">
+        <%=link_to photo.name, photo_path(photo), class: "photo-card_name heading--md"%>
+        <span class="photo-card_comments"><%=photo.comments_count%> comments</span>
+        <div class="options">
+          <div class="option-button">
+            <%=link_to image_tag("icons/edit_icon.svg"), edit_photo_path(photo), class: "option-button_link edit"%>
+          </div>
+          <div class="option-button">
+            <%=link_to image_tag("icons/delete_icon.svg"), photo_path(photo), data: { turbo_method: :delete, 
+                                                                                      turbo_confirm: "Seguro?" }, class: "option-button_link edit"%>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  <%end%>
+</div>

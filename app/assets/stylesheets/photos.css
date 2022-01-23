@@ -1,0 +1,27 @@
+.photo-card {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.photo-card_cover {
+  border-radius: 8px 8px 0 0;
+}
+
+.photo-card_content {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-card_name {
+  color: var(--gray-400);
+}
+
+.photo-card_comments {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: var(--gray-300)
+}

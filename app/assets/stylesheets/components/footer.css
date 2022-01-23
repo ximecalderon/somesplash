@@ -1,0 +1,24 @@
+footer {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--gray-100)
+}
+
+footer .members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px
+}
+
+footer .member {
+  color: var(--secondary-500);
+}
+
+footer .member img {
+  margin-right: 6px;
+  display: inline-block;
+}

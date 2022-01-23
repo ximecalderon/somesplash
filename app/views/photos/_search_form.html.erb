@@ -1,0 +1,7 @@
+<%=form_with url: "/search_results", method: :get, class: "flex flex-column" do |f|%>
+    <h1 class="heading"><%=f.label :query, "Search"%></h1>
+    <div class="input__container">
+        <%=f.text_field :query, placeholder: "Search term", class: "input__content"%>
+    </div>
+    <%=f.submit "Search photos", class: "button button-primary"%>
+<%end%>

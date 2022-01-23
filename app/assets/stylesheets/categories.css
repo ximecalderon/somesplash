@@ -1,0 +1,32 @@
+.category-card {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.category-card_cover {
+  border-radius: 8px 8px 0 0;
+}
+
+.category-card_content {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card_name {
+  color: var(--gray-400);
+}
+
+.category-card_photos {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: var(--gray-300)
+}
+
+.category-card_description{
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
