@@ -1,18 +1,15 @@
-<h1>Edit Photos</h1>
-
-
- <% if @photos.errors.any?%>
+<section class="section-sm flex flex-column">
+  <h1 class="heading">Edit Photos</h1>
+  <% if @photos.errors.any?%>
     <p>Something went wrong:</p>
     <ul>
       <% @photos.errors.full_messages.each do |picture|%>
       <li><%=picture%></li>
       <%end%>
     </ul>
-
   <%end%>
 
-
-<%=form_with model: @photos, class: "flex flex-column gap-4 mb-4" do |f|%>
+  <%=form_with model: @photos, class: "flex flex-column" do |f|%>
       <div class="input">
         <%=f.label :name, "Title", class: "content-xs overline"%>
         <div class="input__container">
@@ -40,6 +37,8 @@
         </div>
       </div>
 
-      <%=f.submit "Edit Photo", class: "button button--secondary"%>
+      <%=f.submit "Edit Photo", class: "button button-primary"%>
     <%end%>
-    <%= link_to "Back", category_path(@photos.category) %>
+
+    <%= link_to "Back", category_path(@photos.category), class: "button button-secondary center-text" %>
+  </section>
