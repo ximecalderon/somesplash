@@ -1,24 +1,19 @@
-# README
+# **Somesplash**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Somesplash will be an open source platforms to share amazing photos with the world. Your job is to build the first MVP of the product. The current team is very small, there is no design department and the product owner is at the same time the general manager, operation manager, talent manager and so on. The GM has send you the design of the main views for the project with few details. You will need to infer a lot of details based on the design. 
 
-Things you may want to cover:
+Find the design [**here**](https://www.figma.com/file/UqSMl0f43mV6yqguK6IrVR/Somesplash?node-id=888%3A708)
 
-* Ruby version
+![somesplash preview](https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/7KuE2YBy/67f77363-9c11-4da3-bb3c-b120b78db4ef.png?v=a9b94c013a59b9c7c47f15d165ef817d)
 
-* System dependencies
+## **Task 1: Build a ERD**
 
-* Configuration
+Based on the design, create a Entity Relationship Diagram with the tables, fields, data types (Rails data types) and relationships. Include a file with your ERD on your solution (JPG, PNG, PDF)
 
-* Database creation
+## **Task 2: Build the project MVP**
 
-* Database initialization
+Using Rails and the MVC pattern, build all the models, controllers and views necessary to have a functional product.
 
-* How to run the test suite
+## **Task 3: Fill the data**
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The objective is to add all the data necessary to resemble the design. You can do it manually but using the seed.rb file could be a better idea.
